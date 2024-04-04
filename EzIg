@@ -1,0 +1,130 @@
+if game.CoreGui.Discord then
+    game.CoreGui.Discord:Destroy()
+end
+
+
+local DiscordLib =
+    loadstring(game:HttpGet "https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/discord")()
+
+local win = DiscordLib:Window("FUCK MACHINE 5000")
+
+local serv = win:Server("Main", "aye")
+
+local btns = serv:Channel("Home")
+
+btns:Label("Made by TORVELIS")
+
+btns:Button(
+    "Copy discord link",
+    function()
+        toclipboard("https://discord.gg/W5ua5jxRMS")
+    end
+)
+
+btns:Seperator()
+
+local tgls = serv:Channel("AutoFarm")
+
+tgls:Toggle(
+    "Auto Swing",
+    false,
+    function(bool)
+        getgenv().AutoSwing = bool
+        while AutoSwing do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Swing:FireServer(CFrame.new(0,0, 0) * CFrame.Angles(0, 0, 0))
+        end
+    end
+)
+
+tgls:Toggle(
+    "Auto Rebirth",
+    false,
+    function(bool)
+        getgenv().AutoRebirth = bool
+        while AutoRebirth do task.wait(.1)
+            game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer()
+        end
+    end
+)
+
+local tlps = serv:Channel("Teleports")
+
+local tp2 =
+    tlps:Dropdown(
+    "Teleports",
+    {"Spawn", "Arctic", "Farm", "Beach", "Heave", "Lava", "Jungle", "Desert", "Void", "Nuclear", "Toy", "Candy", "Space"},
+    function(bool)
+        getgenv().TeleportButton = bool
+        print(TeleportButton)
+    end
+)
+
+tlps:Button(
+    "Teleport",
+    function()
+        if TeleportButton == "Spawn" then
+            print("ok")
+        else
+            print("mna")
+        end
+    end
+)
+
+
+local sldrs = serv:Channel("LocalPlayer")
+
+local sldr = -- WalkSpeed
+    sldrs:Slider(
+    "WalkSpeed",
+    16,
+    1000,
+    16,
+    function(t)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+    end
+)
+
+sldrs:Button(
+    "Change walkspeed to default",
+    function()
+        sldr:Change(16)
+    end
+)
+
+sldrs:Label(
+    "----------------------------------------------------"
+)
+
+local sldr = -- JumpPower
+    sldrs:Slider(
+    "JumpPower",
+    32,
+    1000,
+    32,
+    function(t)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = t
+    end
+)
+
+sldrs:Button(
+    "Change JumpPower to default",
+    function()
+        sldr:Change(32)
+    end
+)
+
+
+local drops = serv:Channel("Misc")
+
+drops:Toggle(
+    "Auto Spin",
+    false,
+    function(bool)
+        getgenv().AutoSpin = bool
+        while AutoSpin do task.wait(.1)
+            game:GetService("ReplicatedStorage").Functions.SpinWheel:InvokeServer()
+        end
+    end
+)
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
